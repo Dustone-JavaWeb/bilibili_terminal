@@ -5,17 +5,21 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>top.dustone.bilibili</groupId>
-  <artifactId>terminal</artifactId>
+  <artifactId>bilibili_terminal</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>terminal</name>
+  <name>bilibili_terminal</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <!-- 文件拷贝时的编码 -->
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <!-- 编译时的编码 -->
+    <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <vertx.version>4.0.0</vertx.version>
   </properties>
 
@@ -68,6 +72,7 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
+          <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
       <plugin>
