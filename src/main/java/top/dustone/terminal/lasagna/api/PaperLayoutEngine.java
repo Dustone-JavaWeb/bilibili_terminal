@@ -9,12 +9,22 @@ import top.dustone.terminal.lasagna.model.PaperContainer;
  * @Date: 2020/12/28 15:46
  */
 public class PaperLayoutEngine {
+    private int x;
+    private int y;
+    private PaperContainer mainContainer;
     private static PaperLayoutEngine layoutEngine = new PaperLayoutEngine();
-    public PaperLayoutEngine getInstance(){
+
+    public PaperLayoutEngine getInstance() {
         return layoutEngine;
     }
-    public PaperLayoutEngine loadConfig(int x, int y, PaperContainer mainContainer){
 
+    public PaperLayoutEngine loadLayout(int x, int y, PaperContainer mainContainer) {
+        this.x = x;
+        this.y = y;
+        this.mainContainer = mainContainer;
+
+        return this;
     }
+
 
 }
