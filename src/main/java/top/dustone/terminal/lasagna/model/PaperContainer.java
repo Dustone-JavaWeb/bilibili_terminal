@@ -2,6 +2,8 @@ package top.dustone.terminal.lasagna.model;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @Author: Dustone
  * @Email: 13048062053@163.com
@@ -18,6 +20,8 @@ public class PaperContainer extends PaperRoot implements Comparable {
      */
     public static int DEFAULT_PAPER_LEVEL = 0;
     int paperLevel = DEFAULT_PAPER_LEVEL;
+    List<PaperContainer> subContainers;
+    PaperPanel childPanel;
 
 
     @Override
