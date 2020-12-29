@@ -22,6 +22,15 @@ public class PaperContainer extends PaperRoot implements Comparable {
     int paperLevel = DEFAULT_PAPER_LEVEL;
     List<PaperContainer> subContainers;
     PaperPanel childPanel;
+    public PaperContainer loadPositionInfo(PaperContainer parent){
+        this.paperLevel = parent.paperLevel;
+
+
+
+
+
+        return this;
+    }
     @Override
     public int compareTo(Object o) {
         if (o instanceof PaperContainer && o != null) {

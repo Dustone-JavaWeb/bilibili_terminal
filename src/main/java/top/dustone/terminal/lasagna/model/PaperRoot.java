@@ -15,8 +15,9 @@ import lombok.experimental.Accessors;
  */
 @Data
 @NoArgsConstructor
-@Accessors( chain = true )
+@Accessors(chain = true)
 public class PaperRoot {
+    public final static int MAX_LAYOUT_OFFSET = 24;
     /**
      * Unique id of each paper
      */
@@ -36,14 +37,22 @@ public class PaperRoot {
     /**
      * layout weight max to 24 default 1
      */
-    int layoutWeight = 1;
+    int layoutWeight = 0;
+    /**
+     * layout weight offset default 0 max 24
+     */
+    int layoutWeightOffset = 0;
+    /**
+     * the direction of layout
+     */
+    PaperLayoutDirection layoutDirection = PaperLayoutDirection.X;
     /**
      * border display config
      */
     boolean borderTop = false;
-    boolean borderBottom=false;
-    boolean borderLeft=false;
-    boolean borderRight=false;
+    boolean borderBottom = false;
+    boolean borderLeft = false;
+    boolean borderRight = false;
     /**
      * border style
      */
@@ -63,19 +72,19 @@ public class PaperRoot {
     int width;
     int height;
 
-    public PaperRoot configBorder(boolean borderTop, boolean borderBottom, boolean borderLeft, boolean borderRight, char borderTopChar, char borderBottomChar, char borderLeftChar, char borderRightChar) {
-        this.borderTop = borderTop;
-        this.borderBottom = borderBottom;
-        this.borderLeft = borderLeft;
-        this.borderRight = borderRight;
-        this.borderTopChar = borderTopChar;
-        this.borderBottomChar = borderBottomChar;
-        this.borderLeftChar = borderLeftChar;
-        this.borderRightChar = borderRightChar;
+    public PaperRoot configWriteableBorder() {
+        if (borderTop) startY = y + 1;
+        else startY = y;
+        if (borderBottom) endY = y + height - 1;
+        else endY = y + height;
+        if (borderLeft) startX = x + 1;
+        else startX = x;
+        if (borderRight) endX = x + width - 1;
+        else endX = x;
         return this;
     }
 
-    public enum PaperLayoutDirection{
-        X,Y
+    public enum PaperLayoutDirection {
+        X, Y
     }
 }
