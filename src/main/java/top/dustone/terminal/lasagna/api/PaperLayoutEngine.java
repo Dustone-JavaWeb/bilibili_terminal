@@ -30,6 +30,7 @@ public class PaperLayoutEngine {
         this.height = height;
         this.mainContainer.setWidth(width).setHeight(height);
         loadLayout();
+        return this;
     }
     public PaperLayoutEngine loadLayout(){
         Iterator<PaperContainer> containerIterator = paperContainers.iterator();
@@ -37,6 +38,7 @@ public class PaperLayoutEngine {
             PaperContainer paperContainer = containerIterator.next();
             paperContainer.loadPositionInfo(mainContainer);
         }
+        return this;
     }
 
 
