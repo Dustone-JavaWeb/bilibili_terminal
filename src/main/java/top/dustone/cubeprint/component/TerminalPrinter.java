@@ -105,4 +105,27 @@ public class TerminalPrinter {
         }
         return sb;
     }
+    public StringBuilder debugPrintAndResetBuilderPools() {
+        StringBuilder sb = new StringBuilder();
+        for (int yP = 0; yP < y; yP++) {
+//            sb.append("\033[").append(yP + 1).append(";1H\033[K");
+            for (int xP = 0; xP < x; xP++) {
+                sb.append(ansiBuilderPool[yP][xP]);
+                if(textBuilderPool[yP][xP].length()==0){
+                    sb.append(' ');
+                }else{
+                    sb.append(textBuilderPool[yP][xP]);
+                }
+                textBuilderPool[yP][xP].setLength(0);
+                ansiBuilderPool[yP][xP].setLength(0);
+                // last
+                if (xP == x - 1) {
+                    sb.append(ansiBuilderPool[yP][xP + 1]);
+                    ansiBuilderPool[yP][xP + 1].setLength(0);
+                    sb.append('\n');
+                }
+            }
+        }
+        return sb;
+    }
 }

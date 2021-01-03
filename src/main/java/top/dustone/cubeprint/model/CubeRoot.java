@@ -19,7 +19,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Accessors(chain = true)
-public abstract class CubeRoot {
+public class CubeRoot {
     public static final int MAX_WEIGHT = 24;
 
     /**
@@ -83,10 +83,10 @@ public abstract class CubeRoot {
     int startY = 0;
     int endX = 0;
     int endY = 0;
-    int x = 0;
-    int y = 0;
-    int width = 0;
-    int height = 0;
+    int x = -1;
+    int y = -1;
+    int width = 1;
+    int height = 1;
 
     public enum CubeLayoutDirection {
         X, Y
@@ -104,10 +104,10 @@ public abstract class CubeRoot {
             startY = 0;
             endX = 0;
             endY = 0;
-            x = 0;
-            y = 0;
-            width = 0;
-            height = 0;
+            x = -1;
+            y = -1;
+            width = 1;
+            height = 1;
         } else {
             // X way layout
             if (parent.layoutDirection == CubeLayoutDirection.X) {
@@ -168,19 +168,23 @@ public abstract class CubeRoot {
             textBuilderPool[y][x].append(borderTop);
         }
         if(borderTop) {
-            if (borderRight) textBuilderPool[y][x].append(borderTopLeftChar);
-            else textBuilderPool[y][x].append(borderLeftChar);
+            if (borderRight) textBuilderPool[y][x+width].append(borderTopRightChar);
+            else textBuilderPool[y][x+width].append(borderTopRightChar);
         }else if(borderRight){
-            textBuilderPool[y][x].append(borderTop);
+            textBuilderPool[y][x+width].append(borderTopRightChar);
         }
-
-
-
-
-
-        if(borderLeft) textBuilderPool[y][x].append(borderTopLeftChar);
-        else textBuilderPool[y][x].append(borderTopChar);
-        if(borderRight)
+        if(borderRight) {
+            if (borderBottom) textBuilderPool[y+height][x+width].append(borderBottomRightChar);
+            else textBuilderPool[y+height][x+width].append(borderBottomRightChar);
+        }else if(borderBottom){
+            textBuilderPool[y+height][x+width].append(borderBottomRightChar);
+        }
+        if(borderBottom) {
+            if (borderLeft) textBuilderPool[y+height][x+1].append(borderBottomLeftChar);
+            else textBuilderPool[y+height][x+1].append(borderBottomLeftChar);
+        }else if(borderLeft){
+            textBuilderPool[y+height][x+1].append(borderBottomLeftChar);
+        }
         return this;
     }
 
